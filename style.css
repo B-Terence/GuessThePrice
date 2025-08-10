@@ -1,0 +1,15 @@
+table {
+  border: 2px solid black;
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
