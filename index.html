@@ -8,35 +8,61 @@
       class="center"
       src="Ressourcen/GuessThePriceImg"
       alt="logo"
-      width="40%"
-      height="40%"
+      width="20%"
+      height="20%"
+      style="margin: auto"
     />
     <h1>
-      Errate den Preis der Kleidungsstücke und erreiche einen Platz auf dem
-      Leaderboard
+      Errate die Preise der Kleidungsstücke und erreiche einen Platz auf dem
+      Leaderboard!
     </h1>
   </head>
+
   <body>
     <form>
       <div class="center">
-        <table>
+        <table style="width: 60%; margin: 0px; border: none">
           <tr>
             <td>image</td>
           </tr>
           <tr>
             <td>
-              <button style="width: 200px; height: 50px"></button>
+              <button class="guessButton">Guess</button>
             </td>
           </tr>
           <tr>
             <td>
-              <input type="text" name="preiseingabe" />
+              <input
+                type="text"
+                name="preiseingabe"
+                class="eingabefeld"
+                placeholder="...the Price"
+              /><label> €</label>
             </td>
           </tr>
-          <tr>
-            <td colspan="3">Leaderboard</td>
-          </tr>
         </table>
+        <ul style="width: 20%; margin: 0px; text-align: center">
+          <li>
+            <h2>Leaderboard</h2>
+          </li>
+          <li>
+            <table style="margin: auto">
+              <colgroup>
+                <col style="width: 20%" />
+                <col sytle="width: 45%" />
+                <col sytle="width: 35%" />
+              </colgroup>
+              <th>Platz</th>
+              <th>Name</th>
+              <th>Score</th>
+              <tr>
+                <td>1</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </li>
+        </ul>
       </div>
     </form>
   </body>
