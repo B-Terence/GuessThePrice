@@ -12,6 +12,20 @@ ul {
   list-style: none;
 }
 
+td {
+  font-size: 20px;
+}
+
+.rundenanzeige {
+  border: none;
+  text-align: center;
+  width: 25vw;
+  font-size: 35px;
+  color: #005c66;
+  font-weight: bold;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
 .center {
   display: flex;
   align-items: flex-start;
@@ -22,24 +36,48 @@ ul {
   background-color: #005c66;
   color: white;
   border: none;
-  padding: 3vh;
   text-align: center;
   font-size: 3vh;
   border-radius: 8px;
   text-shadow: whitesmoke 1px 0 10px;
   margin: 0px;
-  width: 45vw;
+  width: 50vw;
+  height: 8vh;
 }
 
 .eingabefeld {
   box-sizing: border-box;
-  width: 40vw;
+  width: 50vw;
   border: 1px solid black;
   border-radius: 8px;
-  padding: 3vh;
   margin: 0px;
   margin-top: 3px;
   text-align: center;
+  height: 6vh;
+}
+
+.leaderboard tr td {
+  padding: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+#erster {
+  color: gold;
+}
+
+#zweiter {
+  color: silver;
+}
+
+#dritter {
+  color: #cd7f32;
+}
+
+#dritter,
+#zweiter,
+#erster {
+  font-weight: bold;
 }
 
 #LeaderboardTag {
