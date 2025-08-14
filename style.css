@@ -19,11 +19,12 @@ td {
 .rundenanzeige {
   border: none;
   text-align: center;
-  width: 25vw;
+  width: 28vw;
   font-size: 35px;
   color: #005c66;
   font-weight: bold;
   font-family: Georgia, "Times New Roman", Times, serif;
+    padding-bottom: 10px;
 }
 
 .center {
@@ -41,13 +42,13 @@ td {
   border-radius: 8px;
   text-shadow: whitesmoke 1px 0 10px;
   margin: 0px;
-  width: 50vw;
+  width: 56vw;
   height: 8vh;
 }
 
 .eingabefeld {
   box-sizing: border-box;
-  width: 50vw;
+  width: 56vw;
   border: 1px solid black;
   border-radius: 8px;
   margin: 0px;
@@ -58,8 +59,12 @@ td {
 
 .leaderboard tr td {
   padding: 20px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.leaderboard {
+    border-radius: 5px;
 }
 
 #erster {
