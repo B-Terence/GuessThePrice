@@ -21,32 +21,43 @@
 
   </head>
 
-  <body>
+  <body onload="loadNextItem()">
     <script src="gamelogik.js" type="text/javascript"></script>
     <form name="form">
       <div class="center">
         <table style="width: 70%; margin: 0px; border: none">
           <tr>
-            <td>
+            <td >
+                <div id="dynamicDisplay">
               <input
                 type="text"
+                id="Rundenazeige"
                 name="Rundenazeige"
                 class="rundenanzeige"
-                value="Rundenanzeige"
+                value="Runde: 1/5"
                 readonly
               />
               <input
                 type="text"
                 name="Scoreanzeige"
                 class="rundenanzeige"
-                value="Score"
+                value="Score: 0"
                 readonly
               />
+                </div>
             </td>
           </tr>
           <tr>
-            <td id="productImg">image</td>
+            <td id="productImg">
+                <div id="productImgDiv">
+                    image
+                </div>
+            </td>
           </tr>
+                <tr>
+
+                    <td id="productDescription"> <div id="productDescriptionDiv"></div></td>
+                </tr>
           <tr>
             <td>
               <button type="button" class="guessButton" onclick="guess()">Guess</button>

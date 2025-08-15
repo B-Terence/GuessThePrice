@@ -19,12 +19,12 @@ td {
 .rundenanzeige {
   border: none;
   text-align: center;
-  width: 28vw;
+  width: 26vw;
   font-size: 35px;
   color: #005c66;
   font-weight: bold;
   font-family: Georgia, "Times New Roman", Times, serif;
-    padding-bottom: 10px;
+    padding: 10px 0;
 }
 
 .center {
@@ -67,6 +67,20 @@ td {
     border-radius: 5px;
 }
 
+#dynamicDisplay{
+    margin: auto;
+    width: 56vw;
+    display: flow;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+#productInformation{
+    width: 56vw;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
 #erster {
   color: gold;
 }
@@ -83,6 +97,26 @@ td {
 #zweiter,
 #erster {
   font-weight: bold;
+}
+
+#productImgDiv, #productDescriptionDiv{
+    width: 56vw;
+    padding: 0;
+    margin: auto;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+#productImgDiv{
+    border-top: 1px solid black;
+border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+#productDescriptionDiv {
+    border-bottom: 1px solid black;    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 2% 0;
+    text-align: center;
 }
 
 #LeaderboardTag {
