@@ -53,7 +53,7 @@ function calculateScore() {
     const input = parseFloat(document.form.preiseingabe.value);
     const price = Number(productArr[currentProduct].preis);
     if (isNaN(input)) {
-        alert("Du kannst nur eine Zahl eingeben. Für Kommazahlen benutzt man einen Punkt statt Komma '.'");
+        alert("Du kannst nur eine Zahl eingeben. Für Kommazahlen benutzt man einen Punkt statt Komma. (Bsp.: 9.99)");
     }else{
         if(price === input) {
             currentScore += 100;
