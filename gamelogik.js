@@ -1,4 +1,4 @@
-//import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 function productItem(beschreibung, preis, bild) {
    this.beschreibung = beschreibung;
@@ -21,19 +21,18 @@ window.roundCount = 1;
 window.gameOver = false;
 
 
-/*const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
+const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFndnl5cmRpeWZ4b3d4ZGVpZXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1Mjk4NTgsImV4cCI6MjA3MTEwNTg1OH0.QTTpUMRXXXHnATuLFEQKFsrkMR_eY5dN1wL9s30Jnko";
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-*/
+
 function guess (){
- //   let guess = document.form.preiseingabe.value;
     calculateScore();
     setRound();
     if(!gameOver){
     loadNextItem();}
     if(gameOver){
         highScorePopup();
-
+        reset();
     }
 }
 
@@ -41,14 +40,18 @@ function pictureString (productItems) {
     return "<img src='Ressourcen/" + productItems.bild + ".webp'" +  " height='500vh' style='margin: auto; padding-bottom: 10px; padding-top: 10px' />";
 }
 
+function onload(){
+    loadNextItem();
+}
+
 function loadNextItem (){
-    let unused = true;
-    while (unused) {
-        unused = false;
+    let used = true;
+    while (used) {
+        used = false;
         window.currentProduct = Math.floor(Math.random() * productArr.length);
         for (let i = 0; i < productsUsed.length; i++) {
             if (currentProduct === productsUsed[i]) {
-                unused = true;
+                used = true;
             }
         }
     }
@@ -92,14 +95,20 @@ function highScorePopup(){
 }
 
 function submitName() {
+    const name = document.getElementById("playerName").value.trim();
    if (name) {
         saveHighScore(name);
         document.getElementById("popup").classList.add("hidden");
     }else {
         alert("Gib einen Namen ein mit dem du auf dem Leaderboard erscheinen möchtest.")
-        setTimeout(submitName, 30000);
-        submitName();
+        setTimeout(submitName, 10000);
     }
+}
+
+function reset(){
+    window.currentScore = 0;
+    window.roundCount = 0;
+    window.productsUsed = [];
 }
 
 window.loadNextItem = loadNextItem;
@@ -109,7 +118,7 @@ window.setRound = setRound;
 window.submitName = submitName;
 window.calculateScore = calculateScore;
 
-/*
+
 async function saveHighScore(name, place) {
     const { error } = await supabase
         .from("Highscores")
@@ -131,4 +140,3 @@ async function getHighscores(){
     })
 }
 
- */
