@@ -1,4 +1,4 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+//import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 function productItem(beschreibung, preis, bild) {
    this.beschreibung = beschreibung;
@@ -21,10 +21,10 @@ window.roundCount = 1;
 window.gameOver = false;
 
 
-const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
+/*const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFndnl5cmRpeWZ4b3d4ZGVpZXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1Mjk4NTgsImV4cCI6MjA3MTEwNTg1OH0.QTTpUMRXXXHnATuLFEQKFsrkMR_eY5dN1wL9s30Jnko";
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+*/
 function guess (){
     window.guess = document.form.preiseingabe.value;
     calculateScore();
@@ -102,6 +102,14 @@ function submitName() {
     }
 }
 
+window.loadNextItem = loadNextItem;
+window.guess = guess;
+window.submitName = submitName;
+window.setRound = setRound;
+window.submitName = submitName;
+window.calculateScore = calculateScore;
+
+/*
 async function saveHighScore(name, place) {
     const { error } = await supabase
         .from("Highscores")
@@ -122,3 +130,5 @@ async function getHighscores(){
         document.getElementById("namePlatz" + '$index').innerHTML = `${index}.${row.name}`;
     })
 }
+
+ */
