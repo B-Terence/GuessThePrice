@@ -124,7 +124,7 @@ window.calculateScore = calculateScore;
 async function saveHighScore(name, place) {
     const { error } = await supabase
         .from("Highscores")
-        .insertRow(place [{ name, currentScore }]);
+        .insert({ name: name , score: currentScore })
     if (error) console.error("Fehler beim Speichern:", error);
     else console.log("Score gespeichert!");
     await getHighscores();
@@ -132,7 +132,7 @@ async function saveHighScore(name, place) {
 
 async function getHighscores(){
     const { data, error } = await supabase
-        .from("scores")
+        .from("Highscores")
         .select("name, score")
         .order("score", { ascending: false })
         .range(0, 9);
