@@ -43,6 +43,7 @@ function pictureString (productItems) {
 window.addEventListener("load", initGame);
 function initGame(){
     loadNextItem();
+    reset();
 }
 
 function loadNextItem (){
@@ -83,9 +84,9 @@ function calculateScore() {
 }
 
 function setRound(){
-    document.form.Rundenazeige.value = "Runde: " + roundCount + "/5";
     roundCount++;
-    if (roundCount > 5){
+    document.form.Rundenazeige.value = "Runde: " + roundCount + "/5";
+    if (roundCount === 5){
         window.gameOver = true;
     }
 }
@@ -98,7 +99,7 @@ function highScorePopup(){
 function submitName() {
     const name = document.getElementById("playerName").value.trim();
    if (name) {
-        saveHighScore(name);
+        saveHighScore(name, 1);
         document.getElementById("popup").classList.add("hidden");
     }else {
         alert("Gib einen Namen ein mit dem du auf dem Leaderboard erscheinen möchtest.")
@@ -132,12 +133,16 @@ async function saveHighScore(name, place) {
 async function getHighscores(){
     const { data, error } = await supabase
         .from("scores")
-        .select("*")
+        .select("name, score")
         .order("score", { ascending: false })
         .range(0, 9);
 
+    console.log("Highscore-Daten:", data);
+
     data.forEach((row, index) => {
-        document.getElementById("namePlatz" + '$index').innerHTML = `${index}.${row.name}`;
+        const platz = index + 1;
+        document.getElementById("namePlatz" + platz).innerHTML = row.name;
+        document.getElementById("scorePlatz" + platz).innerHTML = row.score;
     })
 }
 
