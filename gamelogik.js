@@ -40,7 +40,8 @@ function pictureString (productItems) {
     return "<img src='Ressourcen/" + productItems.bild + ".webp'" +  " height='500vh' style='margin: auto; padding-bottom: 10px; padding-top: 10px' />";
 }
 
-function onload(){
+window.addEventListener("load", initGame);
+function initGame(){
     loadNextItem();
 }
 
