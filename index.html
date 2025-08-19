@@ -25,7 +25,7 @@
   <?php
   include "main.php";
   ?>
-    <script src="gamelogik.js" type="text/javascript"></script>
+    <script src="gamelogik.js" type="module"></script>
     <form name="form">
       <div class="center">
         <table style="width: 70%; margin: 0px; border: none">
@@ -93,58 +93,68 @@
               <th>Score</th>
               <tr id="erster">
                 <td>1</td>
-                <td>jipipipipi</td>
+                <td id="namePlatz1">jipipipipi</td>
                 <td></td>
               </tr>
               <tr id="zweiter">
                 <td>2</td>
-                <td></td>
+                <td id="namePlatz2"></td>
                 <td></td>
               </tr>
               <tr id="dritter">
                 <td>3</td>
-                <td></td>
+                <td id="namePlatz3"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>4</td>
-                <td></td>
+                <td id="namePlatz4"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>5</td>
-                <td></td>
+                <td id="namePlatz5"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>6</td>
-                <td></td>
+                <td id="namePlatz6"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>7</td>
-                <td></td>
+                <td id="namePlatz7"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>8</td>
-                <td></td>
+                <td id="namePlatz8"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>9</td>
-                <td></td>
+                <td id="namePlatz9"></td>
                 <td></td>
               </tr>
               <tr>
                 <td>10</td>
-                <td></td>
+                <td id="namePlatz10"></td>
                 <td></td>
               </tr>
             </table>
           </li>
         </ul>
       </div>
+        <!-- Popup Overlay -->
+        <div id="popup" class="popup hidden">
+            <div class="popup-content">
+                <h2 id="newHighScoreDisplay"></h2>
+                <p>Gib deinen Namen ein:</p>
+                <input type="text" id="playerName" placeholder="Dein Name">
+                <button onclick="submitName()" id="HighScoreSubmitButton">Speichern</button>
+            </div>
+        </div>
+
     </form>
   </body>
 </html>
