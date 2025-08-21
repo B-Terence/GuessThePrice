@@ -14,56 +14,50 @@
       style="margin: auto"
     />
     -->
-    <h1 style="margin-bottom: 5%">
-      Errate die Preise der Kleidungsstücke und erreiche einen Platz auf dem
-      Leaderboard!
-    </h1>
-
   </head>
 
   <body>
-  <?php
-  include "main.php";
-  ?>
+    <?php include "main.php"; ?>
     <script src="gamelogik.js" type="module"></script>
     <form name="form">
       <div class="center">
         <table style="width: 70%; margin: 0px; border: none">
           <tr>
-            <td >
-                <div id="dynamicDisplay">
-              <input
-                type="text"
-                id="Rundenazeige"
-                name="Rundenazeige"
-                class="rundenanzeige"
-                value="Runde: 1/5"
-                readonly
-              />
-              <input
-                type="text"
-                name="Scoreanzeige"
-                class="rundenanzeige"
-                value="Score: 0"
-                readonly
-              />
-                </div>
+            <td>
+              <div id="dynamicDisplay">
+                <input
+                  type="text"
+                  id="Rundenazeige"
+                  name="Rundenazeige"
+                  class="rundenanzeige"
+                  value="Runde: 1/5"
+                  readonly
+                />
+                <input
+                  type="text"
+                  name="Scoreanzeige"
+                  class="rundenanzeige"
+                  value="Score: 0"
+                  readonly
+                />
+              </div>
             </td>
           </tr>
-          <tr>
-            <td id="productImg">
-                <div id="productImgDiv">
-                    image
-                </div>
-            </td>
-          </tr>
-                <tr>
-
-                    <td id="productDescription"> <div id="productDescriptionDiv"></div></td>
-                </tr>
           <tr>
             <td>
-              <button type="button" class="guessButton" onclick="guess()">Guess</button>
+              <div class="border" id="productList">
+                <ul>
+                  <li id="productImgDiv">image</li>
+                  <li id="productDescriptionDiv">info</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" class="guessButton" onclick="guess()">
+                Guess
+              </button>
             </td>
           </tr>
           <tr>
@@ -145,16 +139,17 @@
           </li>
         </ul>
       </div>
-        <!-- Popup Overlay -->
-        <div id="popup" class="popup hidden">
-            <div class="popup-content">
-                <h2 id="newHighScoreDisplay"></h2>
-                <p>Gib deinen Namen ein:</p>
-                <input type="text" id="playerName" placeholder="Dein Name">
-                <button onclick="submitName()" id="HighScoreSubmitButton">Speichern</button>
-            </div>
+      <!-- Popup Overlay -->
+      <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <h2 id="newHighScoreDisplay"></h2>
+          <p>Gib deinen Namen ein:</p>
+          <input type="text" id="playerName" placeholder="Dein Name" />
+          <button onclick="submitName()" id="HighScoreSubmitButton">
+            Speichern
+          </button>
         </div>
-
+      </div>
     </form>
   </body>
 </html>
