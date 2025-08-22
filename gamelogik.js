@@ -141,8 +141,9 @@ function highScorePopup() {
 
 function submitName() {
   const name = document.getElementById("playerName").value.trim();
+  console.log("Name wurde erkannt");
   if (name) {
-    saveHighScore(name, 1);
+    saveHighScore(name);
     document.getElementById("popup").classList.add("hidden");
   } else {
     alert(
@@ -165,10 +166,10 @@ window.setRound = setRound;
 window.submitName = submitName;
 window.calculateScore = calculateScore;
 
-async function saveHighScore(name, place) {
+async function saveHighScore(name) {
   const { error } = await supabase
-    .from("Highscores")
-    .insert({ name: name, score: currentScore });
+    .from("highscores")
+    .insert({ name: name, score: Number(currentScore) });
   if (error) console.error("Fehler beim Speichern:", error);
   else console.log("Score gespeichert!");
   await getHighscores();
@@ -176,7 +177,7 @@ async function saveHighScore(name, place) {
 
 async function getHighscores() {
   const { data, error } = await supabase
-    .from("Highscores")
+    .from("highscores")
     .select("name, score")
     .order("score", { ascending: false })
     .range(0, 9);
@@ -185,7 +186,11 @@ async function getHighscores() {
 
   data.forEach((row, index) => {
     const platz = index + 1;
-    document.getElementById("namePlatz" + platz).innerHTML = row.name;
-    document.getElementById("scorePlatz" + platz).innerHTML = row.score;
+    const nameCell = document.getElementById("namePlatz" + platz);
+    const scoreCell = document.getElementById("scorePlatz" + platz);
+    if (nameCell && scoreCell) {
+      nameCell.innerHTML = row.name;
+      scoreCell.innerHTML = row.score;
+    }
   });
 }

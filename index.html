@@ -24,7 +24,7 @@
         <table style="width: 70%; margin: 0px; border: none">
           <tr>
             <td>
-              <div id="dynamicDisplay">
+              <div id="dynamicDisplay" class="border">
                 <input
                   type="text"
                   id="Rundenazeige"
@@ -55,7 +55,11 @@
           </tr>
           <tr>
             <td>
-              <button type="button" class="guessButton" onclick="guess()">
+              <button
+                type="button"
+                class="guessButton border"
+                onclick="guess()"
+              >
                 Guess
               </button>
             </td>
@@ -65,7 +69,7 @@
               <input
                 type="text"
                 name="preiseingabe"
-                class="eingabefeld"
+                class="eingabefeld border"
                 placeholder="...the Price (€)"
               />
             </td>
@@ -76,7 +80,7 @@
             <h2>Leaderboard</h2>
           </li>
           <li>
-            <table style="margin: auto" class="leaderboard">
+            <table style="margin: auto" class="leaderboard border">
               <colgroup>
                 <col style="width: 20%" />
                 <col style="width: 45%" />

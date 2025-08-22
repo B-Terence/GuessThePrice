@@ -1,5 +1,4 @@
 table {
-  border: 2px solid black;
   text-align: center;
   margin: auto;
 }
@@ -21,8 +20,12 @@ td {
   font-size: 20px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .border {
-  border: 2px solid black;
+  border: 3px solid black;
   border-radius: 8px;
 }
 
@@ -53,21 +56,18 @@ td {
 .guessButton {
   background-color: #005c66;
   color: white;
-  border: none;
   text-align: center;
   font-size: 3vh;
-  border-radius: 8px;
   text-shadow: whitesmoke 1px 0 10px;
   margin: 0px;
   width: 56vw;
   height: 8vh;
+  box-sizing: border-box;
 }
 
 .eingabefeld {
   box-sizing: border-box;
   width: 56vw;
-  border: 1px solid black;
-  border-radius: 8px;
   margin: 0px;
   margin-top: 3px;
   text-align: center;
@@ -89,8 +89,6 @@ td {
   margin: auto;
   width: 56vw;
   display: flow;
-  border: 1px solid black;
-  border-radius: 8px;
 }
 
 #erster {
@@ -155,4 +153,3 @@ td {
   border-radius: 3px;
   padding: 6px;
 }
-
