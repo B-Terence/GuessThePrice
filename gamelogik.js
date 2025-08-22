@@ -168,15 +168,17 @@ window.submitName = submitName;
 window.calculateScore = calculateScore;
 
 async function saveHighScore(name) {
+  const highscore = currentScore;
   console.log(
     "In svaeHighscoresFunction angekommen Score: " +
       currentScore +
+      highscore +
       " Name: " +
       name,
   );
   const { error } = await supabase
     .from("highscores")
-    .insert({ name: name, score: Number(currentScore) });
+    .insert({ name: name, score: Number(highscore) });
   if (error) console.error("Fehler beim Speichern:", error);
   else console.log("Score gespeichert!");
   await getHighscores();
