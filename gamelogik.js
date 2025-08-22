@@ -141,10 +141,11 @@ function highScorePopup() {
 
 function submitName() {
   const name = document.getElementById("playerName").value.trim();
-  console.log("Name wurde erkannt");
+  console.log("Name wird gesucht");
   if (name) {
     saveHighScore(name);
     document.getElementById("popup").classList.add("hidden");
+    console.log("Name wurde gefunden");
   } else {
     alert(
       "Gib einen Namen ein mit dem du auf dem Leaderboard erscheinen möchtest.",
@@ -167,6 +168,12 @@ window.submitName = submitName;
 window.calculateScore = calculateScore;
 
 async function saveHighScore(name) {
+  console.log(
+    "In svaeHighscoresFunction angekommen Score: " +
+      currentScore +
+      " Name: " +
+      name,
+  );
   const { error } = await supabase
     .from("highscores")
     .insert({ name: name, score: Number(currentScore) });
