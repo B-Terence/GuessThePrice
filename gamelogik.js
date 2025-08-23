@@ -58,7 +58,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 function guess() {
   calculateScore();
-  setRound();
+  priceReveal();
   if (!gameOver) {
     loadNextItem();
   }
@@ -66,6 +66,7 @@ function guess() {
     highScorePopup();
     reset();
   }
+  setRound();
 }
 
 function pictureString(productItems) {
@@ -155,9 +156,9 @@ function submitName() {
 }
 
 function reset() {
-  window.currentScore = 0;
   window.roundCount = 1;
   window.productsUsed = [];
+  window.currentScore = 0;
 }
 
 window.loadNextItem = loadNextItem;
@@ -202,4 +203,14 @@ async function getHighscores() {
       scoreCell.innerHTML = row.score;
     }
   });
+}
+function closePopup() {
+  document.getElementById("popupPreis").classList.add("hidden");
+}
+function priceReveal() {
+  document.getElementById("popupPreis").classList.remove("hidden");
+  document.getElementById("preisanzeige").innerHTML =
+    "Der Preis dieses Produktes Beträgt: " +
+    productArr[currentProduct].preis +
+    "€";
 }
