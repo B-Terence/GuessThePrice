@@ -25,7 +25,7 @@ td {
 }
 
 .border {
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 8px;
 }
 
@@ -71,8 +71,9 @@ td {
   margin: 0px;
   margin-top: 3px;
   text-align: center;
-  font-size: 2vh;
+  font-size: 20px;
   height: 6vh;
+  font-family: cursive;
 }
 
 .leaderboard tr td {
@@ -112,7 +113,7 @@ td {
 #productImgDiv,
 #productDescriptionDiv {
   width: 56vw;
-  padding: 0;
+  padding: 8px 6px;
   margin: 0;
 }
 
@@ -145,7 +146,8 @@ td {
   display: none;
 }
 
-#HighScoreSubmitButton {
+#HighScoreSubmitButton,
+#preisAnzeigeAufloesenButton {
   border: none;
   text-align: center;
   background-color: #005c66;

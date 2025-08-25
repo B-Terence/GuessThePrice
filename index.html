@@ -2,6 +2,7 @@
 
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>Guess The Vinted Prize</title>
     <link rel="stylesheet" href="style.css" />
     <!--
@@ -18,7 +19,6 @@
 
   <body>
     <?php include "main.php"; ?>
-    <script src="gamelogik.js" type="module"></script>
     <form name="form">
       <div class="center">
         <table style="width: 70%; margin: 0px; border: none">
@@ -71,6 +71,7 @@
                 name="preiseingabe"
                 class="eingabefeld border"
                 placeholder="...the Price (€)"
+                autocomplete="off"
               />
             </td>
           </tr>
@@ -158,10 +159,18 @@
       <!-- Auflösung des Preises Popup Overlay -->
       <div id="popupPreis" class="popup hidden">
         <div class="popup-content">
-          <h2>Auflösung!</h2>
+          <h2>Auflösung</h2>
           <p id="preisanzeige"></p>
+          <button
+            type="button"
+            id="preisAnzeigeAufloesenButton"
+            onclick="closePopup()"
+          >
+            weiter
+          </button>
         </div>
       </div>
     </form>
+    <script src="gamelogik.js" defer type="module"></script>
   </body>
 </html>

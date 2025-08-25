@@ -50,6 +50,7 @@ window.currentProduct = 0;
 window.currentScore = 0.0;
 window.roundCount = 1;
 window.gameOver = false;
+window.scoreForCurrentProduct = 0;
 
 const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
 const SUPABASE_ANON_KEY =
@@ -59,17 +60,36 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 function guess() {
   calculateScore();
   priceReveal();
+}
+
+function closePopup() {
+  console.log("HILFEEEEEEEEEEEEE");
+  console.log("closePopup" + currentScore.toFixed(2));
+  document.getElementById("popupPreis").classList.add("hidden");
+  setRound();
+  setScore();
   if (!gameOver) {
     loadNextItem();
   }
   if (gameOver) {
     highScorePopup();
-    reset();
   }
-  setRound();
+}
+
+window.closePopup = closePopup;
+
+function priceReveal() {
+  document.getElementById("popupPreis").classList.remove("hidden");
+  document.getElementById("preisanzeige").innerHTML =
+    "<p>Der Preis dieses Produktes Beträgt: <b>" +
+    productArr[currentProduct].preis +
+    "€ </b></p><p>Du erhälst <b>" +
+    scoreForCurrentProduct.toFixed(2) +
+    "</b> Punkte</p>";
 }
 
 function pictureString(productItems) {
+  console.log("pictureString" + currentScore.toFixed(2));
   return (
     "<img src='Ressourcen/" +
     productItems.bild +
@@ -80,11 +100,13 @@ function pictureString(productItems) {
 
 window.addEventListener("load", initGame);
 function initGame() {
+  console.log("initGame" + currentScore);
   loadNextItem();
   reset();
 }
 
 function loadNextItem() {
+  console.log("loadNesxtitem" + currentScore);
   let used = true;
   while (used) {
     used = false;
@@ -106,6 +128,7 @@ function loadNextItem() {
 }
 
 function calculateScore() {
+  console.log("calculateScore" + currentScore);
   const input = parseFloat(document.form.preiseingabe.value);
   const price = Number(productArr[currentProduct].preis);
   if (isNaN(input)) {
@@ -114,16 +137,23 @@ function calculateScore() {
     );
   } else {
     if (price === input) {
-      window.currentScore += 100;
+      scoreForCurrentProduct = 100;
+      currentScore += 100;
     } else {
       if (price * 2 <= input || input <= 0) {
-        window.currentScore += 0;
+        scoreForCurrentProduct = 0;
+        currentScore += 0;
       } else {
-        window.currentScore += (1 - Math.abs(input - price) / price) * 100;
+        scoreForCurrentProduct = (1 - Math.abs(input - price) / price) * 100;
+        currentScore += scoreForCurrentProduct;
       }
     }
+    console.log(currentScore);
   }
+}
+function setScore() {
   document.form.Scoreanzeige.value = "Score: " + currentScore.toFixed(2);
+  console.log("setScore: " + currentScore);
 }
 
 function setRound() {
@@ -147,6 +177,7 @@ function submitName() {
     saveHighScore(name);
     document.getElementById("popup").classList.add("hidden");
     console.log("Name wurde gefunden");
+    reset();
   } else {
     alert(
       "Gib einen Namen ein mit dem du auf dem Leaderboard erscheinen möchtest.",
@@ -156,9 +187,11 @@ function submitName() {
 }
 
 function reset() {
-  window.roundCount = 1;
+  window.roundCount = 0;
   window.productsUsed = [];
   window.currentScore = 0;
+  setRound();
+  setScore();
 }
 
 window.loadNextItem = loadNextItem;
@@ -203,14 +236,4 @@ async function getHighscores() {
       scoreCell.innerHTML = row.score;
     }
   });
-}
-function closePopup() {
-  document.getElementById("popupPreis").classList.add("hidden");
-}
-function priceReveal() {
-  document.getElementById("popupPreis").classList.remove("hidden");
-  document.getElementById("preisanzeige").innerHTML =
-    "Der Preis dieses Produktes Beträgt: " +
-    productArr[currentProduct].preis +
-    "€";
 }
