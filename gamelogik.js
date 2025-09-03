@@ -52,6 +52,27 @@ window.roundCount = 1;
 window.gameOver = false;
 window.scoreForCurrentProduct = 0;
 
+document.addEventListener("DOMContentLoaded", () => {
+    const input = document.getElementById("preiseingabe");
+
+    input.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            const preisPopup = document.getElementById("popupPreis").classList.contains("hidden");
+            const highScorePopup = document.getElementById("popup").classList.contains("hidden");
+            if(preisPopup && highScorePopup) {
+            event.preventDefault();
+            guess();}
+            else if(preisPopup && !highScorePopup) {
+                event.preventDefault();
+                submitName();
+            }else{
+                event.preventDefault();
+                closePopup();
+            }
+        }
+    });
+});
+
 const SUPABASE_URL = "https://qgvyyrdiyfxowxdeiezj.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFndnl5cmRpeWZ4b3d4ZGVpZXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU1Mjk4NTgsImV4cCI6MjA3MTEwNTg1OH0.QTTpUMRXXXHnATuLFEQKFsrkMR_eY5dN1wL9s30Jnko";
@@ -101,18 +122,21 @@ function pictureString(productItems) {
 window.addEventListener("load", initGame);
 function initGame() {
   console.log("initGame" + currentScore);
+  getHighscores();
   loadNextItem();
   reset();
 }
 
 function loadNextItem() {
-  console.log("loadNesxtitem" + currentScore);
+  console.log("loadNesxtitem" + currentScore
+  + "\n Products Used" +productsUsed.length);
   let used = true;
   while (used) {
     used = false;
     window.currentProduct = Math.floor(Math.random() * productArr.length);
     for (let i = 0; i < productsUsed.length; i++) {
       if (currentProduct === productsUsed[i]) {
+          console.log("Product schon benutzt");
         used = true;
       }
     }
@@ -158,10 +182,12 @@ function setScore() {
 
 function setRound() {
   roundCount++;
-  document.form.Rundenazeige.value = "Runde: " + roundCount + "/5";
-  if (roundCount === 5) {
-    window.gameOver = true;
+  if (roundCount > 5) {
+        window.gameOver = true;
+    } else {
+      document.form.Rundenazeige.value = "Runde: " + roundCount + "/5";
   }
+
 }
 
 function highScorePopup() {
@@ -198,8 +224,9 @@ window.loadNextItem = loadNextItem;
 window.guess = guess;
 window.submitName = submitName;
 window.setRound = setRound;
-window.submitName = submitName;
 window.calculateScore = calculateScore;
+window.saveHighScore = saveHighScore;
+window.getHighscores = getHighscores;
 
 async function saveHighScore(name) {
   const highscore = currentScore;
@@ -213,27 +240,47 @@ async function saveHighScore(name) {
   const { error } = await supabase
     .from("highscores")
     .insert({ name: name, score: Number(highscore) });
+
   if (error) console.error("Fehler beim Speichern:", error);
   else console.log("Score gespeichert!");
+
   await getHighscores();
 }
 
 async function getHighscores() {
-  const { data, error } = await supabase
-    .from("highscores")
-    .select("name, score")
-    .order("score", { ascending: false })
-    .range(0, 9);
+    console.log("Getting Highscores!");
 
-  console.log("Highscore-Daten:", data);
+    const { data, error } = await supabase
+        .from("highscores")
+        .select("name, score")
+        .order("score", { ascending: false })
+        .range(0, 9);
 
-  data.forEach((row, index) => {
-    const platz = index + 1;
-    const nameCell = document.getElementById("namePlatz" + platz);
-    const scoreCell = document.getElementById("scorePlatz" + platz);
-    if (nameCell && scoreCell) {
-      nameCell.innerHTML = row.name;
-      scoreCell.innerHTML = row.score;
+    if (error) {
+        console.error("Fehler beim Abrufen:", error);
+        return;
     }
-  });
+
+    console.log("Highscore-Daten:", data);
+
+    if (!data || data.length === 0) {
+        console.warn("Keine Daten gefunden!");
+        return;
+    }
+
+    data.forEach((row, index) => {
+        const platz = index + 1;
+        const nameCell = document.getElementById("namePlatz" + platz);
+        const scoreCell = document.getElementById("scorePlatz" + platz);
+
+        if (nameCell && scoreCell) {
+            nameCell.innerHTML = row.name ?? "Unbekannt";
+            scoreCell.innerHTML = row.score ?? "-";
+        } else {
+            console.warn(`Elemente für Platz ${platz} nicht gefunden`);
+        }
+    });
+
+
+
 }
