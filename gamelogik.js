@@ -80,7 +80,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 function guess() {
   calculateScore();
-  priceReveal();
 }
 
 function closePopup() {
@@ -153,12 +152,14 @@ function loadNextItem() {
 
 function calculateScore() {
   console.log("calculateScore" + currentScore);
-  const input = parseFloat(document.form.preiseingabe.value);
+  const input = document.form.preiseingabe.value;
+  console.log("input: " + input);
   const price = Number(productArr[currentProduct].preis);
-  if (isNaN(input)) {
+  if (isNaN(input) || input==="") {
     alert(
-      "Du kannst nur Zahlen eingeben. Für Kommazahlen benutzt man einen Punkt statt Komma. (Bsp.: 9.99)",
+      "Du kannst nur Zahlen eingeben.",
     );
+    return;
   } else {
     if (price === input) {
       scoreForCurrentProduct = 100;
@@ -173,6 +174,7 @@ function calculateScore() {
       }
     }
     console.log(currentScore);
+    priceReveal()
   }
 }
 function setScore() {
