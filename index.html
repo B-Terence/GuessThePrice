@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <title>Guess The Vinted Price</title>
     <link rel="stylesheet" href="style.css" />
-      <h1>Guess The Vinted Price!</h1>
-      <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-      <!--
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!--
        <img
         class="center"
         src="Ressourcen/GuessThePriceImg"
@@ -23,6 +23,10 @@
   <body>
     <?php include "main.php"; ?>
     <form name="form">
+      <div class="headline">
+        <h1>Guess The Vinted Price!</h1>
+        <button id="infoButton"><b>i</b></button>
+      </div>
       <div class="center">
         <table style="width: 70%; margin: 0px; border: none">
           <tr>
@@ -85,17 +89,17 @@
             <h2>Leaderboard</h2>
           </li>
           <li>
-            <table class="leaderboard border" style="margin: auto;">
+            <table class="leaderboard border" style="margin: auto">
               <colgroup>
                 <col style="width: 20%" />
                 <col style="width: 45%" />
                 <col style="width: 35%" />
               </colgroup>
-                <tr>
-              <th>Platz</th>
-              <th>Name</th>
-              <th>Score</th>
-                </tr>
+              <tr>
+                <th>Platz</th>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
               <tr id="erster">
                 <td>1</td>
                 <td id="namePlatz1"></td>

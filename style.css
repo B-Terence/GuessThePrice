@@ -3,7 +3,6 @@ table {
   margin: auto;
 }
 
-
 ul {
   list-style: none;
   margin: 0;
@@ -11,21 +10,36 @@ ul {
 }
 
 h1 {
+  margin: 2vh;
   text-align: center;
-    color: #005c66;
-    font-family: Georgia, "Times New Roman", Times, serif;
-    padding: 3vh;
-    font-size: 35px;
+  color: #005c66;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 3vh;
+  font-size: 35px;
 }
 
 td {
   font-size: 20px;
 }
-th{
-}
 
 * {
   box-sizing: border-box;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline h1 {
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.headline button {
+  margin-left: auto;
 }
 
 .border {
@@ -42,7 +56,6 @@ th{
   font-weight: bold;
   font-family: Georgia, "Times New Roman", Times, serif;
   padding: 10px 0;
-
 }
 
 #productList {
@@ -73,19 +86,28 @@ th{
 .eingabefeld {
   box-sizing: border-box;
   width: 56vw;
-    margin: 3px 0 0;
-    text-align: center;
-  font-size:
-          20px;font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 3px 0 0;
+  text-align: center;
+  font-size: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
   height: 6vh;
 }
 
 .leaderboard tr td {
-    padding: 15px 20px;
+  padding: 15px 20px;
 }
 
 .leaderboard {
   border-radius: 5px;
+}
+
+#infoButton {
+  width: 45px;
+  height: 45px;
+  margin: 0 2vw;
+  font-size: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  align-self: right;
 }
 
 #dynamicDisplay {
